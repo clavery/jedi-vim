@@ -388,11 +388,7 @@ def cmdline_call_signatures(signatures):
     def get_params(s):
         return [p.description.replace('\n', '') for p in s.params]
 
-    if len(signatures) > 1:
-        params = zip_longest(*map(get_params, signatures), fillvalue='_')
-        params = ['(' + ', '.join(p) + ')' for p in params]
-    else:
-        params = get_params(signatures[0])
+    params = get_params(signatures[0])
     text = ', '.join(params).replace('"', '\\"').replace(r'\n', r'\\n')
 
     # Allow 12 characters for ruler/showcmd - setting noruler/noshowcmd
